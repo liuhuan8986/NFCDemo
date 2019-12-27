@@ -35,8 +35,13 @@ class MainActivity : NFCBaseActivity() {
 
         //拿来装读取出来的数据，key代表扇区数，后面list存放四个块的内容
         val map = HashMap<String, MutableList<String>>();
+        val xx: Parcelable? = intent?.getParcelableExtra(NfcAdapter.EXTRA_TAG)
+        if(xx==null){
+            return
+        }
         //intent就是onNewIntent方法返回的那个intent
         var tag = intent?.getParcelableExtra(NfcAdapter.EXTRA_TAG) as Tag;
+
         val techList = tag.getTechList()
         Log.e("liu", "标签支持的tachnology类型：")
         Log.e("liu", tag.id.contentToString())
